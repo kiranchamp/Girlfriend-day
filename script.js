@@ -1,48 +1,163 @@
-function nextPage(page){
+window.onload=()=>{
 
-document.querySelectorAll(".page").forEach(function(section){
-section.classList.remove("active");
+setTimeout(()=>{
+
+document.querySelector(".loader").style.display="none";
+
+},1800);
+
+};
+
+function scrollToSection(){
+
+document.querySelector("#story").scrollIntoView({
+
+behavior:"smooth"
+
 });
 
-document.getElementById("page"+page).classList.add("active");
+}
 
-if(page===5){
-celebrate();
+const music=document.getElementById("music");
+
+const btn=document.getElementById("musicBtn");
+
+let play=false;
+
+btn.onclick=()=>{
+
+if(!play){
+
+music.play();
+
+btn.innerHTML="⏸";
+
+play=true;
+
+}
+
+else{
+
+music.pause();
+
+btn.innerHTML="🎵";
+
+play=false;
+
+}
+
+};
+
+const startDate=new Date("2023-01-01");
+
+const today=new Date();
+
+const diff=today-startDate;
+
+const days=Math.floor(diff/(1000*60*60*24));
+
+document.getElementById("days").innerHTML=days+" Days ❤️";
+
+const text=
+
+`My Love,
+
+Happy Girlfriend Day ❤️
+
+Thank you for making my world brighter.
+
+Thank you for believing in me.
+
+Thank you for loving me.
+
+Every day with you feels magical.
+
+No matter what happens,
+
+I promise to choose you,
+
+today,
+
+tomorrow,
+
+and forever.
+
+I Love You ❤️`;
+
+let i=0;
+
+function typing(){
+
+if(i<text.length){
+
+document.getElementById("typing").innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(typing,35);
+
 }
 
 }
 
-function celebrate(){
+typing();
 
-for(let i=0;i<120;i++){
+const list=document.getElementById("reasonList");
 
-let heart=document.createElement("div");
+for(let i=1;i<=100;i++){
 
-heart.innerHTML="❤️";
+const li=document.createElement("li");
 
-heart.style.position="fixed";
-heart.style.left=Math.random()*100+"vw";
-heart.style.top="-30px";
-heart.style.fontSize=(18+Math.random()*25)+"px";
-heart.style.zIndex="9999";
-heart.style.pointerEvents="none";
+li.innerHTML=i+". Because you make my life beautiful ❤️";
 
-document.body.appendChild(heart);
-
-let fall=setInterval(()=>{
-
-heart.style.top=(heart.offsetTop+5)+"px";
-
-if(heart.offsetTop>window.innerHeight){
-
-heart.remove();
-
-clearInterval(fall);
+list.appendChild(li);
 
 }
 
-},20);
+function heart(){
+
+const h=document.createElement("div");
+
+h.className="heart";
+
+h.innerHTML="❤";
+
+h.style.left=Math.random()*100+"vw";
+
+h.style.fontSize=(20+Math.random()*30)+"px";
+
+document.querySelector(".hearts").appendChild(h);
+
+setTimeout(()=>{
+
+h.remove();
+
+},8000);
 
 }
 
-}
+setInterval(heart,250);
+
+document.addEventListener("mousemove",(e)=>{
+
+const dot=document.createElement("div");
+
+dot.className="heart";
+
+dot.innerHTML="❤";
+
+dot.style.left=e.pageX+"px";
+
+dot.style.top=e.pageY+"px";
+
+dot.style.fontSize="12px";
+
+document.querySelector(".hearts").appendChild(dot);
+
+setTimeout(()=>{
+
+dot.remove();
+
+},1200);
+
+});
