@@ -1,163 +1,249 @@
-window.onload=()=>{
+window.onload = () => {
 
-setTimeout(()=>{
-
-document.querySelector(".loader").style.display="none";
-
-},1800);
+    setTimeout(() => {
+        document.querySelector(".loader").style.display = "none";
+    }, 2500);
 
 };
 
-function scrollToSection(){
+function scrollToSection() {
 
-document.querySelector("#story").scrollIntoView({
-
-behavior:"smooth"
-
-});
+    document.querySelector("#story").scrollIntoView({
+        behavior: "smooth"
+    });
 
 }
 
-const music=document.getElementById("music");
+const music = document.getElementById("music");
+const btn = document.getElementById("musicBtn");
 
-const btn=document.getElementById("musicBtn");
+let play = false;
 
-let play=false;
+btn.onclick = () => {
 
-btn.onclick=()=>{
+    if (!play) {
 
-if(!play){
+        music.play();
+        btn.innerHTML = "⏸️";
+        play = true;
 
-music.play();
+    } else {
 
-btn.innerHTML="⏸";
+        music.pause();
+        btn.innerHTML = "🎵";
+        play = false;
 
-play=true;
-
-}
-
-else{
-
-music.pause();
-
-btn.innerHTML="🎵";
-
-play=false;
-
-}
+    }
 
 };
 
-const startDate=new Date("2023-01-01");
+const startDate = new Date("2022-04-20");
+const today = new Date();
 
-const today=new Date();
+const diff = today - startDate;
 
-const diff=today-startDate;
+const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
-const days=Math.floor(diff/(1000*60*60*24));
+document.getElementById("days").innerHTML =
+days + " Beautiful Days Together ❤️";
 
-document.getElementById("days").innerHTML=days+" Days ❤️";
+const text = `
 
-const text=
-
-`My Love,
+My Dearest PAPA ❤️
 
 Happy Girlfriend Day ❤️
 
-Thank you for making my world brighter.
+Today isn't just another day...
+
+It's another reminder of how lucky I am to have you.
+
+Ever since 20 April 2022,
+life has never been the same.
+
+Thank you for your love.
+
+Thank you for your care.
+
+Thank you for your patience.
 
 Thank you for believing in me.
 
-Thank you for loving me.
+You make my ordinary days extraordinary.
 
-Every day with you feels magical.
+You are my happiness.
 
-No matter what happens,
+You are my peace.
 
-I promise to choose you,
+You are my safe place.
 
-today,
+No matter what happens in life...
 
-tomorrow,
+I promise to respect you.
 
-and forever.
+I promise to support you.
 
-I Love You ❤️`;
+I promise to make you smile.
 
-let i=0;
+I promise to choose YOU...
 
-function typing(){
+again...
 
-if(i<text.length){
+and again...
 
-document.getElementById("typing").innerHTML+=text.charAt(i);
+every single day.
 
-i++;
+Happy Girlfriend Day ❤️
 
-setTimeout(typing,35);
+Forever Yours,
+
+Kiran ❤️
+
+`;
+
+let i = 0;
+
+function typing() {
+
+    if (i < text.length) {
+
+        document.getElementById("typing").innerHTML += text.charAt(i);
+
+        i++;
+
+        setTimeout(typing, 35);
+
+    }
+
+}
+const reasons = [
+
+"Because your smile makes my day brighter. ❤️",
+"Because you always believe in me.",
+"Because your hugs feel like home.",
+"Because you make ordinary moments magical.",
+"Because your laugh is my favorite sound.",
+"Because you support me in everything.",
+"Because you understand me.",
+"Because your kindness inspires me.",
+"Because life is beautiful with you.",
+"Because you're simply YOU ❤️"
+
+];
+
+const list = document.getElementById("reasonList");
+
+for (let i = 1; i <= 100; i++) {
+
+    const li = document.createElement("li");
+
+    li.innerHTML = i + ". " + reasons[(i - 1) % reasons.length];
+
+    list.appendChild(li);
 
 }
 
-}
+function heart() {
 
-typing();
+    const h = document.createElement("div");
 
-const list=document.getElementById("reasonList");
+    h.className = "heart";
 
-for(let i=1;i<=100;i++){
+    h.innerHTML = "❤️";
 
-const li=document.createElement("li");
+    h.style.left = Math.random() * 100 + "vw";
 
-li.innerHTML=i+". Because you make my life beautiful ❤️";
+    h.style.fontSize = (20 + Math.random() * 30) + "px";
 
-list.appendChild(li);
+    document.querySelector(".hearts").appendChild(h);
 
-}
+    setTimeout(() => {
 
-function heart(){
+        h.remove();
 
-const h=document.createElement("div");
-
-h.className="heart";
-
-h.innerHTML="❤";
-
-h.style.left=Math.random()*100+"vw";
-
-h.style.fontSize=(20+Math.random()*30)+"px";
-
-document.querySelector(".hearts").appendChild(h);
-
-setTimeout(()=>{
-
-h.remove();
-
-},8000);
+    }, 8000);
 
 }
 
-setInterval(heart,250);
+setInterval(heart, 220);document.addEventListener("mousemove", (e) => {
 
-document.addEventListener("mousemove",(e)=>{
+    const dot = document.createElement("div");
 
-const dot=document.createElement("div");
+    dot.className = "heart";
 
-dot.className="heart";
+    dot.innerHTML = "❤️";
 
-dot.innerHTML="❤";
+    dot.style.left = e.pageX + "px";
 
-dot.style.left=e.pageX+"px";
+    dot.style.top = e.pageY + "px";
 
-dot.style.top=e.pageY+"px";
+    dot.style.fontSize = "12px";
 
-dot.style.fontSize="12px";
+    document.querySelector(".hearts").appendChild(dot);
 
-document.querySelector(".hearts").appendChild(dot);
+    setTimeout(() => {
 
-setTimeout(()=>{
+        dot.remove();
 
-dot.remove();
-
-},1200);
+    }, 1200);
 
 });
+
+setTimeout(() => {
+
+    const message = document.createElement("div");
+
+    message.innerHTML = `
+        <div style="
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,.75);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            z-index:99999;
+            padding:20px;
+        ">
+            <div style="
+                background:white;
+                color:#ff2f8d;
+                max-width:420px;
+                width:90%;
+                border-radius:20px;
+                padding:30px;
+                text-align:center;
+                font-family:Poppins,sans-serif;
+                box-shadow:0 10px 30px rgba(0,0,0,.3);
+            ">
+                <h2>❤️ Happy Girlfriend Day ❤️</h2>
+                <p style="margin-top:15px;line-height:1.8;">
+                    Dear <b>PAPA</b>,<br><br>
+                    Thank you for making my life beautiful.<br>
+                    Every day with you is my favorite day.<br><br>
+                    I promise to choose you,
+                    today, tomorrow,
+                    and forever.
+                </p>
+                <h3 style="margin-top:20px;">
+                    Forever Yours,<br>
+                    Kiran ❤️
+                </h3>
+                <button onclick="this.closest('div').parentElement.remove()"
+                style="
+                    margin-top:20px;
+                    background:#ff2f8d;
+                    color:white;
+                    border:none;
+                    padding:12px 25px;
+                    border-radius:30px;
+                    cursor:pointer;
+                ">
+                    I Love You ❤️
+                </button>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(message);
+
+}, 12000);
+typing();
